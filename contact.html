@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdenScape Landscapers - Get a Quote</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#2d6a4f',
+                        'light-green': '#40916c',
+                        'accent-yellow': '#ffba08',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .form-success, .form-error {
+            display: none;
+            transition: all 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #40916c;
+            box-shadow: 0 0 0 3px rgba(64, 145, 108, 0.25);
+        }
+        .input-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2d6a4f;
+        }
+        .form-label {
+            transition: all 0.2s ease;
+        }
+        .form-control:focus + .form-label,
+        .form-control:not(:placeholder-shown) + .form-label {
+            transform: translateY(-24px);
+            font-size: 0.75rem;
+            color: #2d6a4f;
+        }
+        .custom-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #2d6a4f;
+            border-radius: 4px;
+            background-color: white;
+            display: inline-block;
+            position: relative;
+            margin-right: 8px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .custom-checkbox:checked {
+            background-color: #2d6a4f;
+        }
+        .custom-checkbox:checked::after {
+            content: '✓';
+            font-size: 14px;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .service-option {
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .service-option:hover {
+            border-color: #ffba08;
+            transform: translateY(-2px);
+        }
+        .service-option.selected {
+            border-color: #2d6a4f;
+            background-color: rgba(45, 106, 79, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fas fa-leaf text-3xl text-primary-green mr-3"></i>
+                        <h1 class="text-primary-green text-xl font-bold">EDENSCAPE LANDSCAPERS</h1>
+                    </div>
+                    <button id="menu-toggle" class="md:hidden text-primary-green focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+                <nav id="menu" class="hidden md:block mt-4 md:mt-0">
+                    <ul class="flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0">
+                        <li><a href="./index.html" class="text-primary-green font-semibold hover:text-accent-yellow transition">Home</a></li>
+                        <li><a href="#quote" class="bg-accent-yellow text-primary-green px-4 py-2 rounded font-semibold hover:bg-primary-green hover:text-white transition">Get a Quote</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Page Title -->
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-4xl font-bold text-primary-green">Get Your Free Landscaping Quote</h1>
+                <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Fill out the form below and our team will get back to you within 24 hours with a customized quote for your landscaping needs.</p>
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <!-- Progress Indicator -->
+                <div class="bg-gray-100 px-6 py-4 border-b border-gray-200">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Step 1 of 1</span>
+                        <div class="w-2/3 bg-gray-300 rounded-full h-2">
+                            <div class="bg-primary-green h-2 rounded-full w-full"></div>
+                        </div>
+                        <span class="text-sm font-medium text-primary-green">Contact Info</span>
+                    </div>
+                </div>
+
+                <!-- Success & Error Messages -->
+                <div class="form-success bg-green-50 border-l-4 border-green-500 p-4 m-6 rounded">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-lg font-medium text-green-800">Request Submitted Successfully!</h3>
+                            <p class="text-green-700 mt-2">Thank you for reaching out! Our team will contact you within 24 hours to discuss your landscaping needs.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-error bg-red-50 border-l-4 border-red-500 p-4 m-6 rounded">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-circle text-red-500 text-xl"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-lg font-medium text-red-800">Submission Error</h3>
+                            <p class="text-red-700 mt-2">There was a problem submitting your request. Please try again or contact us directly at <span class="font-medium">info@edenscape.com</span>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Contents -->
+                <form action="https://api.web3forms.com/submit" method="POST" id="contactForm" class="p-6">
+                    <input type="hidden" name="access_key" value="306ad930-9628-48c8-821e-b80ab9821199">
+                    <input type="hidden" name="subject" value="New Landscaping Service Request">
+                    <input type="hidden" name="from_name" value="EdenScape Contact Form">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Personal Information Section -->
+                        <div class="md:col-span-2">
+                            <h3 class="text-lg font-semibold text-primary-green mb-4 flex items-center">
+                                <i class="fas fa-user-circle mr-2"></i>
+                                Personal Information
+                            </h3>
+                        </div>
+                        
+                        <!-- Name Field -->
+                        <div class="relative">
+                            <input type="text" id="name" name="name" class="form-control w-full p-4 border border-gray-300 rounded-lg focus:outline-none" placeholder=" " required>
+                            <label for="name" class="form-label absolute left-4 top-4 text-gray-500 transition-transform pointer-events-none">Full Name</label>
+                            <div class="input-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Email Field -->
+                        <div class="relative">
+                            <input type="email" id="email" name="email" class="form-control w-full p-4 border border-gray-300 rounded-lg focus:outline-none" placeholder=" " required>
+                            <label for="email" class="form-label absolute left-4 top-4 text-gray-500 transition-transform pointer-events-none">Email Address</label>
+                            <div class="input-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Phone Field -->
+                        <div class="relative">
+                            <input type="tel" id="phone" name="phone" class="form-control w-full p-4 border border-gray-300 rounded-lg focus:outline-none" placeholder=" ">
+                            <label for="phone" class="form-label absolute left-4 top-4 text-gray-500 transition-transform pointer-events-none">Phone Number</label>
+                            <div class="input-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Preferred Contact Method -->
+                        <div>
+                            <label class="block text-gray-700 font-medium mb-2">Preferred Contact Method</label>
+                            <div class="flex space-x-4">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="contact_method" value="email" checked class="hidden">
+                                    <span class="w-5 h-5 rounded-full border-2 border-primary-green flex items-center justify-center mr-2">
+                                        <span class="contact-radio-dot w-2.5 h-2.5 rounded-full bg-primary-green hidden"></span>
+                                    </span>
+                                    <span>Email</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="contact_method" value="phone" class="hidden">
+                                    <span class="w-5 h-5 rounded-full border-2 border-primary-green flex items-center justify-center mr-2">
+                                        <span class="contact-radio-dot w-2.5 h-2.5 rounded-full bg-primary-green hidden"></span>
+                                    </span>
+                                    <span>Phone</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="radio" name="contact_method" value="text" class="hidden">
+                                    <span class="w-5 h-5 rounded-full border-2 border-primary-green flex items-center justify-center mr-2">
+                                        <span class="contact-radio-dot w-2.5 h-2.5 rounded-full bg-primary-green hidden"></span>
+                                    </span>
+                                    <span>Text</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Selection Section -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-primary-green mb-4 flex items-center">
+                            <i class="fas fa-clipboard-list mr-2"></i>
+                            Services Interested In
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="service-option p-4 rounded-lg text-center cursor-pointer" data-service="Lawn Maintenance">
+                                <div class="bg-light-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-cut text-2xl text-primary-green"></i>
+                                </div>
+                                <h4 class="font-medium">Lawn Maintenance</h4>
+                                <input type="radio" name="service" value="Lawn Maintenance" class="hidden">
+                            </div>
+                            <div class="service-option p-4 rounded-lg text-center cursor-pointer" data-service="Landscape Design">
+                                <div class="bg-light-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-drafting-compass text-2xl text-primary-green"></i>
+                                </div>
+                                <h4 class="font-medium">Landscape Design</h4>
+                                <input type="radio" name="service" value="Landscape Design" class="hidden">
+                            </div>
+                            <div class="service-option p-4 rounded-lg text-center cursor-pointer" data-service="Garden Care">
+                                <div class="bg-light-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-seedling text-2xl text-primary-green"></i>
+                                </div>
+                                <h4 class="font-medium">Garden Care</h4>
+                                <input type="radio" name="service" value="Garden Care" class="hidden">
+                            </div>
+                            <div class="service-option p-4 rounded-lg text-center cursor-pointer" data-service="Landscape Lighting">
+                                <div class="bg-light-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-lightbulb text-2xl text-primary-green"></i>
+                                </div>
+                                <h4 class="font-medium">Landscape Lighting</h4>
+                                <input type="radio" name="service" value="Landscape Lighting" class="hidden">
+                            </div>
+                            <div class="service-option p-4 rounded-lg text-center cursor-pointer" data-service="Irrigation Service">
+                                <div class="bg-light-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-tint text-2xl text-primary-green"></i>
+                                </div>
+                                <h4 class="font-medium">Irrigation Service</h4>
+                                <input type="radio" name="service" value="Irrigation Service" class="hidden">
+                            </div>
+                            <div class="service-option p-4 rounded-lg text-center cursor-pointer" data-service="Other Services">
+                                <div class="bg-light-green bg-opacity-10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <i class="fas fa-plus text-2xl text-primary-green"></i>
+                                </div>
+                                <h4 class="font-medium">Other Services</h4>
+                                <input type="radio" name="service" value="Other Services" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Property Details Section -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-primary-green mb-4 flex items-center">
+                            <i class="fas fa-home mr-2"></i>
+                            Property Details
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="property_type" class="block text-gray-700 font-medium mb-2">Property Type</label>
+                                <select id="property_type" name="property_type" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary-green focus:outline-none">
+                                    <option value="residential">Residential</option>
+                                    <option value="commercial">Commercial</option>
+                                    <option value="community">Community/HOA</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="property_size" class="block text-gray-700 font-medium mb-2">Approximate Property Size</label>
+                                <select id="property_size" name="property_size" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary-green focus:outline-none">
+                                    <option value="small">Small (Less than 5,000 sq ft)</option>
+                                    <option value="medium">Medium (5,000 - 10,000 sq ft)</option>
+                                    <option value="large">Large (10,000+ sq ft)</option>
+                                    <option value="not_sure">Not Sure</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Message Section -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-semibold text-primary-green mb-4 flex items-center">
+                            <i class="fas fa-comment-alt mr-2"></i>
+                            Tell Us More
+                        </h3>
+                        <div class="relative">
+                            <textarea id="message" name="message" rows="5" class="w-full p-4 border border-gray-300 rounded-lg focus:border-primary-green focus:outline-none" placeholder="Please share any specific details about your project, concerns, or questions you may have..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="flex items-start mb-8">
+                        <input type="checkbox" id="newsletter" name="newsletter" class="custom-checkbox">
+                        <label for="newsletter" class="ml-2 text-gray-700">
+                            Sign me up for the EdenScape newsletter to receive landscaping tips, seasonal offers, and exclusive discounts.
+                        </label>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="bg-primary-green text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-accent-yellow hover:text-primary-green transition shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Get My Free Quote
+                        </button>
+                        <p class="text-gray-500 text-sm mt-3">
+                            <i class="fas fa-lock text-xs mr-1"></i>
+                            Your information is secure and will not be shared with third parties.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-green text-white pt-12 pb-4 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-leaf text-2xl mr-2"></i>
+                        <h3 class="text-xl font-bold">EDENSCAPE</h3>
+                    </div>
+                    <p class="mb-4">Transform your outdoor spaces into thriving, beautiful retreats with our professional landscaping services.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-9 h-9 bg-white text-primary-green rounded-full flex items-center justify-center hover:bg-accent-yellow hover:-translate-y-1 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white text-primary-green rounded-full flex items-center justify-center hover:bg-accent-yellow hover:-translate-y-1 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white text-primary-green rounded-full flex items-center justify-center hover:bg-accent-yellow hover:-translate-y-1 transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-9 h-9 bg-white text-primary-green rounded-full flex items-center justify-center hover:bg-accent-yellow hover:-translate-y-1 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-accent-yellow text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-accent-yellow transition">Home</a></li>
+                        <li><a href="#services" class="hover:text-accent-yellow transition">Services</a></li>
+                        <li><a href="#about" class="hover:text-accent-yellow transition">About Us</a></li>
+                        <li><a href="#testimonials" class="hover:text-accent-yellow transition">Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-accent-yellow transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-accent-yellow text-lg font-bold mb-4">Our Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-accent-yellow transition">Lawn Maintenance</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition">Landscape Design</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition">Shrub & Tree Trimming</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition">Landscape Lighting</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition">Irrigation Services</a></li>
+                        <li><a href="#" class="hover:text-accent-yellow transition">Complete Garden Solutions</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-accent-yellow text-lg font-bold mb-4">Contact</h3>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-map-marker-alt text-accent-yellow mr-2"></i>
+                        123 Garden Way, Green Heights
+                    </p>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-phone-alt text-accent-yellow mr-2"></i>
+                        +254718 312 321
+                    </p>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-envelope text-accent-yellow mr-2"></i>
+                        info@edenscape.com
+                    </p>
+                    <p class="flex items-center mb-2">
+                        <i class="fas fa-clock text-accent-yellow mr-2"></i>
+                        Mon - Sat: 8:00 AM - 6:00 PM
+                    </p>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-white border-opacity-10">
+                <p>&copy; 2025 EdenScape Landscapers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+       // Form submission handling
+const form = document.getElementById("contactForm");
+const formSuccess = document.querySelector(".form-success");
+const formError = document.querySelector(".form-error");
+
+form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    
+    // Hide any existing messages
+    formSuccess.style.display = "none";
+    formError.style.display = "none";
+    
+    // Show loading state
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Submitting...';
+    
+    try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            // Show success message and reset form
+            formSuccess.style.display = "block";
+            form.reset();
+            
+            // Scroll to success message
+            formSuccess.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            // Show error message
+            formError.style.display = "block";
+            console.error("Form submission error:", data);
+        }
+    } catch (error) {
+        formError.style.display = "block";
+        console.error("Form submission error:", error);
+    } finally {
+        // Reset button state
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+    }
+});
+
+// Service option selection
+const serviceOptions = document.querySelectorAll('.service-option');
+serviceOptions.forEach(option => {
+    option.addEventListener('click', function() {
+        // Remove selected class from all options
+        serviceOptions.forEach(opt => opt.classList.remove('selected'));
+        
+        // Add selected class to clicked option
+        this.classList.add('selected');
+        
+        // Set the radio input value
+        const serviceName = this.getAttribute('data-service');
+        const radioInput = this.querySelector('input[type="radio"]');
+        radioInput.checked = true;
+    });
+});
+
+// Custom radio button handling
+const radioInputs = document.querySelectorAll('input[type="radio"][name="contact_method"]');
+radioInputs.forEach(input => {
+    input.addEventListener('change', function() {
+        // Hide all dots
+        document.querySelectorAll('.contact-radio-dot').forEach(dot => {
+            dot.classList.add('hidden');
+        });
+        
+        // Show dot for selected radio
+        if (this.checked) {
+            const parentLabel = this.closest('label');
+            const dot = parentLabel.querySelector('.contact-radio-dot');
+            dot.classList.remove('hidden');
+        }
+    });
+});
+
+// Initialize state of radio buttons
+document.querySelector('input[type="radio"][name="contact_method"]:checked')
+    .closest('label')
+    .querySelector('.contact-radio-dot')
+    .classList.remove('hidden');
+
+// Mobile Menu Toggle
+document.getElementById('menu-toggle').addEventListener('click', function() {
+    const menu = document.getElementById('menu');
+    if (menu.classList.contains('hidden')) {
+        menu.classList.remove('hidden');
+    } else {
+        menu.classList.add('hidden');
+    }
+});
+
+// Close mobile menu when clicking a navigation link
+const navLinks = document.querySelectorAll('nav a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth < 768) {
+            document.getElementById('menu').classList.add('hidden');
+        }
+    });
+});
+
+// Form field validation indicators
+const requiredInputs = document.querySelectorAll('input[required], textarea[required]');
+requiredInputs.forEach(input => {
+    input.addEventListener('blur', function() {
+        if (this.value.trim() === '') {
+            this.classList.add('border-red-500');
+            
+            // Add error message if it doesn't exist
+            let errorMessage = this.parentNode.querySelector('.error-message');
+            if (!errorMessage) {
+                errorMessage = document.createElement('p');
+                errorMessage.className = 'text-red-500 text-sm mt-1 error-message';
+                errorMessage.textContent = 'This field is required';
+                this.parentNode.appendChild(errorMessage);
+            }
+        } else {
+            this.classList.remove('border-red-500');
+            this.classList.add('border-green-500');
+            
+            // Remove error message if it exists
+            const errorMessage = this.parentNode.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        }
+    });
+    
+    input.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            this.classList.remove('border-red-500');
+            
+            // Remove error message if it exists
+            const errorMessage = this.parentNode.querySelector('.error-message');
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        }
+    });
+});
+
+// Email validation
+const emailInput = document.getElementById('email');
+emailInput.addEventListener('blur', function() {
+    if (this.value.trim() !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.value)) {
+            this.classList.add('border-red-500');
+            
+            // Add error message if it doesn't exist
+            let errorMessage = this.parentNode.querySelector('.error-message');
+            if (!errorMessage) {
+                errorMessage = document.createElement('p');
+                errorMessage.className = 'text-red-500 text-sm mt-1 error-message';
+                errorMessage.textContent = 'Please enter a valid email address';
+                this.parentNode.appendChild(errorMessage);
+            } else {
+                errorMessage.textContent = 'Please enter a valid email address';
+            }
+        }
+    }
+});
+
+// Phone number validation
+const phoneInput = document.getElementById('phone');
+phoneInput.addEventListener('blur', function() {
+    if (this.value.trim() !== '') {
+        // Basic phone format validation - can be enhanced for specific formats
+        const phoneRegex = /^[0-9+\-\s()]{7,20}$/;
+        if (!phoneRegex.test(this.value)) {
+            this.classList.add('border-red-500');
+            
+            // Add error message if it doesn't exist
+            let errorMessage = this.parentNode.querySelector('.error-message');
+            if (!errorMessage) {
+                errorMessage = document.createElement('p');
+                errorMessage.className = 'text-red-500 text-sm mt-1 error-message';
+                errorMessage.textContent = 'Please enter a valid phone number';
+                this.parentNode.appendChild(errorMessage);
+            } else {
+                errorMessage.textContent = 'Please enter a valid phone number';
+            }
+        }
+    }
+});
+
+// Service selection validation
+function validateServiceSelection() {
+    const serviceSelected = document.querySelector('input[name="service"]:checked');
+    const serviceSection = document.querySelector('.service-option').closest('div').parentNode;
+    
+    if (!serviceSelected) {
+        // Add error message if it doesn't exist
+        let errorMessage = serviceSection.querySelector('.service-error-message');
+        if (!errorMessage) {
+            errorMessage = document.createElement('p');
+            errorMessage.className = 'text-red-500 text-sm mt-1 service-error-message';
+            errorMessage.textContent = 'Please select at least one service';
+            serviceSection.appendChild(errorMessage);
+        }
+        return false;
+    } else {
+        // Remove error message if it exists
+        const errorMessage = serviceSection.querySelector('.service-error-message');
+        if (errorMessage) {
+            errorMessage.remove();
+        }
+        return true;
+    }
+}
+
+// Add form validation before submission
+form.addEventListener('submit', function(e) {
+    // Check if required inputs are valid
+    let isValid = true;
+    
+    requiredInputs.forEach(input => {
+        if (input.value.trim() === '') {
+            input.classList.add('border-red-500');
+            
+            // Add error message if it doesn't exist
+            let errorMessage = input.parentNode.querySelector('.error-message');
+            if (!errorMessage) {
+                errorMessage = document.createElement('p');
+                errorMessage.className = 'text-red-500 text-sm mt-1 error-message';
+                errorMessage.textContent = 'This field is required';
+                input.parentNode.appendChild(errorMessage);
+            }
+            
+            isValid = false;
+        }
+    });
+    
+    // Validate email format
+    if (emailInput.value.trim() !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value)) {
+            isValid = false;
+        }
+    }
+    
+    // Validate service selection
+    if (!validateServiceSelection()) {
+        isValid = false;
+    }
+    
+    if (!isValid) {
+        e.preventDefault();
+        
+        // Scroll to the first error
+        const firstError = document.querySelector('.border-red-500, .service-error-message');
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+});
+
+// Animated scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Focus visual effect for form fields
+const formFields = document.querySelectorAll('input, textarea, select');
+formFields.forEach(field => {
+    field.addEventListener('focus', function() {
+        this.parentNode.classList.add('ring-2', 'ring-primary-green', 'ring-opacity-50');
+    });
+    
+    field.addEventListener('blur', function() {
+        this.parentNode.classList.remove('ring-2', 'ring-primary-green', 'ring-opacity-50');
+    });
+});
+
+// Initialize service options if needed
+const defaultService = document.querySelector('input[name="service"][checked]');
+if (defaultService) {
+    const serviceOption = defaultService.closest('.service-option');
+    if (serviceOption) {
+        serviceOption.classList.add('selected');
+    }
+}
+
+    </script>
+</body>
+</html>
