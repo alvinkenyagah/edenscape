@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EdenScape Landscapers - Transform Your Outdoor Space</title>
+    <style>
+        :root {
+            --primary-green: #2d6a4f;
+            --light-green: #40916c;
+            --yellow: #ffba08;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --dark-text: #212529;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--primary-green);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--yellow);
+        }
+        
+        .cta-button {
+            background-color: var(--yellow);
+            color: var(--primary-green);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-green);
+            color: var(--white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background-color: var(--yellow);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .hero-buttons .cta-button {
+            padding: 0.75rem 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: var(--white);
+            color: var(--primary-green);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--light-gray);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            color: var(--primary-green);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--yellow);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+        }
+        
+        .service-content h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.75rem;
+        }
+        
+        .service-content ul {
+            list-style-position: inside;
+            margin-bottom: 1rem;
+        }
+        
+        .service-content ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100px;
+            height: 100px;
+            background-color: var(--yellow);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            z-index: -1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            color: var(--primary-green);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--yellow);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .satisfaction-guarantee {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .satisfaction-guarantee img {
+            width: 70px;
+            margin-right: 1rem;
+        }
+        
+        .satisfaction-guarantee p {
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+        }
+        
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-bottom: 3rem;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--yellow);
+            font-family: serif;
+            opacity: 0.5;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        
+        /* Contact */
+        .contact {
+            padding: 5rem 0;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info h2 {
+            color: var(--primary-green);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--yellow);
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-icon {
+            background-color: var(--yellow);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+        
+        .contact-text h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-form {
+            background-color: var(--light-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-button:hover {
+            background-color: var(--yellow);
+            color: var(--primary-green);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .footer-logo h3 {
+            color: var(--white);
+            font-size: 1.3rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h3, .footer-services h3, .footer-contact h3 {
+            color: var(--yellow);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul, .footer-services ul {
+            list-style: none;
+        }
+        
+        .footer-links li, .footer-services li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a, .footer-services a {
+            color: var(--white);
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover, .footer-services a:hover {
+            color: var(--yellow);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact p i {
+            margin-right: 0.5rem;
+            color: var(--yellow);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-icon {
+            background-color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--yellow);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 0.75rem;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-buttons .cta-button, .hero-buttons .secondary-button {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/api/placeholder/50/50" alt="EdenScape Logo">
+                <h1>EDENSCAPE LANDSCAPERS</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#contact" class="cta-button">Get a Quote</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Transform Your Outdoor Space into a Beautiful Retreat</h2>
+                <p>Professional lawn & garden services with unbeatable rates and satisfaction guaranteed. We bring your vision to life—one blade, bloom, and branch at a time.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">Request a Free Quote</a>
+                    <a href="#services" class="secondary-button">Explore Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Lawn & Garden Services</h2>
+                <p>Comprehensive landscaping solutions for every outdoor need</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Lawn Care & Maintenance</h3>
+                        <ul>
+                            <li>Professional lawn mowing</li>
+                            <li>Fertilization & weed control</li>
+                            <li>Lawn spraying & treatment</li>
+                            <li>Seeding & sodding</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Request Service</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Landscape Design</h3>
+                        <ul>
+                            <li>Custom landscape planning</li>
+                            <li>Garden & bed design</li>
+                            <li>Hardscape integration</li>
+                            <li>Sustainable landscaping</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Request Service</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Garden & Plant Care</h3>
+                        <ul>
+                            <li>Shrub & tree trimming</li>
+                            <li>Plant installation</li>
+                            <li>Mulching & soil care</li>
+                            <li>Seasonal clean-up</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Request Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="services-grid" style="margin-top: 2rem;">
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Landscape Lighting</h3>
+                        <ul>
+                            <li>Outdoor lighting design</li>
+                            <li>Path & garden illumination</li>
+                            <li>Security lighting</li>
+                            <li>Holiday lighting</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Request Service</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Irrigation Services</h3>
+                        <ul>
+                            <li>Sprinkler system installation</li>
+                            <li>Drip irrigation</li>
+                            <li>System maintenance</li>
+                            <li>Water conservation solutions</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Request Service</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="service-content">
+                        <h3>Complete Garden Solutions</h3>
+                        <ul>
+                            <li>Full-service garden care</li>
+                            <li>Seasonal plantings</li>
+                            <li>Vegetable & herb gardens</li>
+                            <li>Garden restoration</li>
+                        </ul>
+                        <a href="#contact" class="cta-button">Request Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="EdenScape Team">
+                </div>
+                <div class="about-text">
+                    <h2>About EdenScape</h2>
+                    <p>At EdenScape, we transform outdoor spaces into thriving, beautiful retreats. With a passion for sustainable landscaping and meticulous garden care, we bring your vision to life—one blade, bloom, and branch at a time.</p>
+                    <p>Founded on the principles of quality, reliability, and sustainability, our team of experienced landscapers combines artistic vision with horticultural expertise to create and maintain outdoor spaces that enhance your property and lifestyle.</p>
+                    <p>We take pride in our work and stand behind every project with our commitment to excellence and customer satisfaction.</p>
+                    <div class="satisfaction-guarantee">
+                        <img src="/api/placeholder/70/70" alt="Satisfaction Guaranteed">
+                        <p>100% Satisfaction Guaranteed on All Our Services</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from our satisfied customers</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"EdenScape completely transformed our backyard from an overgrown mess to a beautiful outdoor living space. Their attention to detail and knowledge of plants suited to our climate made all the difference. Highly recommend their services!"</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Client">
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"We've been using EdenScape's maintenance services for our commercial property for over two years now, and the grounds have never looked better. Their team is professional, punctual, and truly cares about the work they do."</p>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Client">
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <p>Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to transform your outdoor space? Contact us today!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>+254718 312 321</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p>info@edenscape.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🏢</div>
+                            <div class="contact-text">
+                                <h4>Office</h4>
+                                <p>123 Garden Way, Green Heights</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">⏰</div>
+                            <div class="contact-text">
+                                <h4>Working Hours</h4>
+                                <p>Monday - Saturday: 8:00 AM - 6:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Request a Free Quote</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select class="form-control" id="service">
+                                <option>Lawn Maintenance</option>
+                                <option>Landscape Design</option>
+                                <option>Garden Care</option>
+                                <option>Landscape Lighting</option>
+                                <option>Irrigation Service</option>
+                                <option>Other Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea class="form-control" id="message" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="/api/placeholder/40/40" alt="EdenScape Logo">
+                        <h3>EDENSCAPE</h3>
+                    </div>
+                    <p>Transform your outdoor spaces into thriving, beautiful retreats with our professional landscaping services.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">f</a>
+                        <a href="#" class="social-icon">t</a>
+                        <a href="#" class="social-icon">in</a>
+                        <a href="#" class="social-icon">ig</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="#">Lawn Maintenance</a></li>
+                        <li><a href="#">Landscape Design</a></li>
+                        <li><a href="#">Shrub & Tree Trimming</a></li>
+                        <li><a href="#">Landscape Lighting</a></li>
